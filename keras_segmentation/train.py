@@ -69,7 +69,8 @@ def train(model,
           ignore_zero_class=False,
           optimizer_name='adadelta',
           do_augment=False,
-          augmentation_name="aug_all"):
+          augmentation_name="aug_all",
+         callbacks=[]):
 
     from .models.all_models import model_from_name
     # check if user gives model name instead of the model object
@@ -148,7 +149,7 @@ def train(model,
             val_images, val_annotations,  val_batch_size,
             n_classes, input_height, input_width, output_height, output_width)
 
-    callbacks = [
+    callbacks += [
         CheckpointsCallback(checkpoints_path)
     ]
 
